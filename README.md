@@ -24,4 +24,6 @@ The code is primarily built upon the following libraries: `pytorch`, `numpy`, `p
 
 ## 2. Deep dreaming experiments
 
-1. Go to the `/deep_dreaming_experiments/` directory and explore the jupyter notebooks for the property case studies explored in the main article above (pore volume, $c_p$, and $Q_{CO_2}$ and $S_{CO_2/N_2}$)
+1. Go to the `/deep_dreaming_experiments/` directory and explore the jupyter notebooks for the property case studies explored in the main article above (pore volume, $c_p$, and $Q_{CO_2}$ and $S_{CO_2/N_2}$).
+2. Some of these studies rely on optimising seed distributions, which are contained in the `/deep_dreaming_experiments/seeds/` directory.
+3. Deep dreaming results are stored in the `/dream_results/` subdirectory for each case study, and are visualised within their respective jupyter notebooks. 
