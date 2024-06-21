@@ -9,7 +9,7 @@ This repo is intended as a documentation of the simulation experiments conducted
 
 Note:
 -----
-The scripts are provided as-is, and are not guaranteed to work without the required dependencies or with different structure from that used in our work. If you have any questions, please contact the corresponding author of the article.
+The scripts are provided as-is, and are not guaranteed to work without the required dependencies or with a different structure from that used in our work. If you have any questions, please contact the corresponding author of the article.
 
 ## 0. Dependencies
 
@@ -22,3 +22,6 @@ The code is primarily built upon the following libraries: `pytorch`, `numpy`, `p
 3.	To visualise the parity plots for these models, run the `/train_models/plot_performance.ipynb` jupyter notebook. 
 
 
+## 2. Deep dreaming experiments
+
+1. Go to the `/deep_dreaming_experiments/` directory and explore the jupyter notebooks for the property case studies explored in the main article above (pore volume, $c_p$, and $Q_{CO_2}$ and $S_{CO_2/N_2}$)
