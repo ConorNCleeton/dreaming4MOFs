@@ -13,7 +13,9 @@ The scripts are provided as-is, and are not guaranteed to work without the requi
 
 ## 0. Dependencies
 
-The code is primarily built upon the following libraries: `pytorch`, `numpy`, `pandas`, [selfies](https://github.com/aspuru-guzik-group/selfies.git), [group selfies](https://github.com/aspuru-guzik-group/group-selfies.git), `rdkit`, `scikit-learn`.
+An `environment.yml` file is available for setting up a new Python environment. Most of the required dependencies are handled in this file. However, some other packages, such as [group selfies](https://github.com/aspuru-guzik-group/group-selfies.git) and [PORMAKE](https://github.com/Sangwon91/PORMAKE.git) (if using Windows), will need to be installed seperately. 
+
+The code is primarily built upon the following libraries: `pytorch`, `numpy`, `pandas`, [selfies](https://github.com/aspuru-guzik-group/selfies.git), [group selfies](https://github.com/aspuru-guzik-group/group-selfies.git), `rdkit`, `scikit-learn`, [PORMAKE](https://github.com/Sangwon91/PORMAKE.git)
 
 ## 1. Training deep dreaming models
 
