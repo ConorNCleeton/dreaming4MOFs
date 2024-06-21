@@ -5,9 +5,6 @@ import numpy as np
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from typing import Optional, List
-import pormake as pm 
-## TODO: REMOVE DEPENDENCY ON TORCH HERE 
-# import torch
 import copy
 import ase.visualize
 try:
@@ -15,6 +12,13 @@ try:
 except Exception as e:
     from ase.neighborlist import natural_cutoffs
 from pathlib import Path
+import pysmiles as ps
+import networkx as nx
+from rdkit.Geometry import Point3D
+from sklearn.decomposition import PCA
+from rdkit.Chem import rdMolTransforms
+import pormake as pm 
+
 
 #************************ UTILITY FUNCTIONS **********************************#
 class BuildingBlock:
@@ -328,9 +332,6 @@ def get_smiles_for_bb(bb):
     :param bb: The building block object
     :return: A string of the SMILES representation of the molecule.
     """
-
-    import pysmiles as ps
-    import networkx as nx
     mol = nx.Graph()
     mol.add_edges_from(bb.bonds)
     nx.set_node_attributes(mol, dict(enumerate(bb.atoms.get_chemical_symbols())), 'element')
@@ -383,7 +384,7 @@ def write_bb_as_xyz(smiles, path_to_database, bb_name, connector_char='[Fr]', cl
     base_positions = positions[rep_ids]
 
     new_positions = fr_positions + closeness*(base_positions - fr_positions)
-    from rdkit.Geometry import Point3D
+
     conf = mol1.GetConformer()
     for i in range(len(new_positions)):
         x,y,z = new_positions[i]
@@ -442,9 +443,7 @@ def write_bb_as_xyz2(smiles, path_to_database, bb_name, connector_char='[Fr]', c
     :param closeness: how close to the base atom should the connection point be?
     """
 
-    from rdkit import Chem
-    from rdkit.Chem import AllChem
-    import os
+
     filename = os.path.join(os.path.abspath(path_to_database) , 'bbs', bb_name + '.xyz')
     #* To get the length of the connection points right
     # mol1 = Chem.MolFromSmiles(smiles.replace(connector_char, '[Li]'))
@@ -476,7 +475,6 @@ def write_bb_as_xyz2(smiles, path_to_database, bb_name, connector_char='[Fr]', c
     base_positions = positions[rep_ids]
 
     new_positions = fr_positions + closeness*(base_positions - fr_positions)
-    from rdkit.Geometry import Point3D
     conf = mol1.GetConformer()
     for i in range(len(new_positions)):
         x,y,z = new_positions[i]
@@ -519,11 +517,6 @@ def write_bb_as_xyz2(smiles, path_to_database, bb_name, connector_char='[Fr]', c
             f.write('\t'+str(bond.GetBeginAtomIdx())+'\t'+ str(bond.GetEndAtomIdx()) +' '+ str(bond.GetBondType())[0]+'\n')
 
 def write_smiles_as_bb(smiles, path_to_database, bb_name, closeness=0.75):
-    import os
-    import numpy as np
-    from rdkit import Chem
-    from sklearn.decomposition import PCA
-    from rdkit.Chem import rdMolTransforms
 
     # Parse the SMILES string to generate a molecule
     mol = Chem.MolFromSmiles(smiles)
